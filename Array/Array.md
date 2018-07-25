@@ -14,13 +14,13 @@ index는 1차원 또는 다차원의 유한 순서 집합이다. 예를 들면, 
 
 
 * **Item Retrive(A, i) ::=**  
-        if (i \in index)
-            return 배열 A의 인덱스 i값과 관련된 항목.
-        else
-            return 에러.
+        if (i \in index)  
+            return 배열 A의 인덱스 i값과 관련된 항목.  
+        else  
+            return 에러.  
 
 * **Array Store(A, i, x) ::=**  
-        if (i \in index)
-            return 새로운 쌍 <i, x>가 삽입된 배열 A.
-        else
-            return 에러.
+        if (i \in index)  
+            return 새로운 쌍 <i, x>가 삽입된 배열 A.  
+        else  
+            return 에러.  
