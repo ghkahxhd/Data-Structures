@@ -110,3 +110,81 @@ typedef struct {
     treePointer leftChild, rightChild;
 } node;
 ```
+
+## 4. 이진 트리 순회
+
+* 이진 트리의 중위 순회
+```
+void inorder(treePointer ptr) {
+    if (ptr) {
+        inorder(ptr->leftChild);
+        printf("%d ", ptr->data);
+        inorder(ptr->rightChild);
+    }
+}
+```
+
+* 이진 트리의 전위 순회
+```
+void preorder(treePointer ptr) {
+    if (ptr) {
+        printf("%d ", ptr->data);
+        preorder(ptr->leftChild);
+        preorder(ptr->rightChild);
+    }
+}
+```
+
+* 이진 트리의 후위 순회
+```
+void postorder(treePointer ptr) {
+    if (ptr) {
+        postorder(ptr->leftChild);
+        postorder(ptr->rightChild);
+        printf("%d ", ptr->data);
+    }
+}
+```
+
+* 반복적 중위 순회
+> 트리의 노드 수를 n이라고 할 때, iterInorder를 살펴보면, 트리의 모든 노드들은 스택에 꼭 한 번씩 삽입된다. 그러므로 트리의 노드 수가 n이면 시간 복잡도는 O(n)이다. 저장 공간은 트리의 깊이 O(n)만큼 필요하다.  
+
+ ```
+void iterInorder(treePointer node) {
+    int top = -1;   /* 스택 초기화 */
+    treePointer stack[MAX_STACK_SIZE];
+
+    for (;;) {
+        for (; node; node = node->leftChild)
+            push(node); /* 스택에 삽입 */
+        node = pop();   /* 스택에서 삭제 */
+        if (!node)  break;  /* 공백 스택 */
+
+        printf("%d", node->data);
+        node = node->rightChild;
+    }
+}
+```
+
+* 이진 트리의 레벨 순서 순회
+```
+void levelOrder(treePointer ptr) {
+    int front = rear = 0;
+    treePointer queue[MAX_QUEUE_SZIE];
+    if (!ptr)   return; /* 공백 트리 */
+
+    addq(ptr);
+    for (;;) {
+        ptr = deleteq();
+        if (ptr) {
+            printf("%d", ptr->data);
+            if (ptr->leftChild)
+                addq(ptr->leftChild);
+            if (ptr->rightChild)
+                addq(ptr->rightChild);
+        }
+        else
+            break;
+    }
+}
+```
