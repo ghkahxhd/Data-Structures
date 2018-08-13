@@ -239,3 +239,39 @@ int length(listPointer last)
     return count;
 }
 ```
+
+## 8. 이중 연결 리스트
+
+```
+typedef struct node *nodePointer;
+typedef struct {
+    nodePointer llink;
+    element data;
+    nodePointer rlink;
+} node;
+```
+
+이중 연결 원형 리스트에 삽입
+```
+void dinsert(nodePointer node, nodePointer newnode)
+{ /* newnode를 node의 오른쪽에 삽입 */
+    newnode->llink = node;
+    newnode->rlink = node-rlink;
+    newnode->rlink->llink = newnode;
+    node->rlink = newnode;
+}
+```
+
+이중 연결 원형 리스트에서의 삭제
+```
+void ddelete(nodePointer node, nodePointer deleted)
+{ /* 이중 연결 리스트에서의 삭제 */
+    if (node == deleted)
+        printf("Deletion of head and node not permitted\n");
+    else {
+        deleted->llink->rlink = deleted->rlink;
+        deleted->rlink->llink = deleted->llink;
+        free(deleted);
+    }
+}
+```
