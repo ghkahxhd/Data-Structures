@@ -35,7 +35,6 @@ void FInesert(List *plist, LData data)
 
     newNode->next = plist->head->next;
     plist->head->next = newNode;
-
     plist->numOfData++;
 }
 
